@@ -1,4 +1,5 @@
 import '../scss/App.scss';
+import GridProducts from '../components/GridProducts';
 
 function App() {
   return (
@@ -12,6 +13,9 @@ function App() {
       </header>
       <section class="divider">
         <h1 class="title">Electronics</h1>
+      </section>
+      <section class="content">
+        <GridProducts></GridProducts>
       </section>
     </div>
   );

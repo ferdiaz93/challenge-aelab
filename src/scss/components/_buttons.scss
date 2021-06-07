@@ -1,6 +1,14 @@
 .default-button{
-    background-color: #ededed;
+    background-color: $white;
     border-radius: 100px;
     height: 48px;
     border: none;
+    cursor: pointer;
+    padding: 0px 20px;
+}
+
+.default-button:hover{
+    background-color: $light-blue;
+    color: $white;
+    transition: all 200ms;
 }
