@@ -1,15 +1,34 @@
+import React, { useState, useEffect } from "react";
 
-const Product = () =>{
+const Product = ({Item}) =>{
+    const [product, setProduct] = useState(Item);
+
     return (
-        <button class="product-button">
-            <div class="product-image">
-                <img src="./assets/product-pics/MacbookPro-x2.png"></img>
+        <div
+        className="product-button"
+        onMouseEnter={() => {
+            console.log("Event:MouseEnter");
+        }}
+        >
+            <div className="initial-product-view">
+                <button className="grey-button float-need-button">
+                    You need 400
+                    <img src="./assets/icons/coin.svg" alt="" />
+                </button>
+                <div className="product-image">
+                    <img src={product.img.url}></img>
+                </div>
+                <div className="product-description">
+                    <p className="section">{product.category}</p>
+                    <span className="name">{product.name}</span>
+                </div>
+                <img className="float-buy-button" src="./assets/icons/buy-white.svg" alt="" />
             </div>
-            <div class="product-description">
-                <p class="section">Laptops</p>
-                <span class="name">Macbook Pro</span>
+            <div className="action-product">
+                <span>12.000</span>
+                <button className="default-button">Redeem now</button>
             </div>
-        </button>
+        </div>
     )
 
 }
