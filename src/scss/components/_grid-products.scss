@@ -97,4 +97,14 @@
     display: flex;
     flex-wrap: wrap;
     gap: 50px;
+    animation: showGrid 1000ms 1 linear 0ms normal forwards;;
+}
+
+@keyframes showGrid{
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
 }
