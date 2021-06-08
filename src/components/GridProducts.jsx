@@ -39,8 +39,9 @@ const GridProducts = ({ Points, openModal }) => {
 
   const orderRecent = () => {
     let productsPages = paginationProducts(historyProducts);
-    setParsedProducts(productsPages)
-    setActiveFilter('More recent')
+    setParsedProducts(productsPages);
+    setActiveFilter('More recent');
+    setCurrentPage(0);
   }
 
   const orderLow = () => {
@@ -66,10 +67,11 @@ const GridProducts = ({ Points, openModal }) => {
   const productsViewed = () => {
     let count = 0;
     let page = currentPage;
-    while (page >= 0) {
-      count += parsedProducts[currentPage]?.length
-      page--
-    }
+    parsedProducts.forEach((products, index) => {
+      if(index <= page){
+        count += products.length;
+      }
+    })
     return count;
   }
 
