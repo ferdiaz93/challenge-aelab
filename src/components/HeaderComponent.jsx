@@ -6,7 +6,7 @@ const HeaderComponent = ({User, OpenModal}) => {
                 <div className="user-info">
                     <span>{User.name}</span>
                     <button className="default-button" onClick={() => OpenModal()}>
-                        {User.points} <img src="../assets/icons/coin.svg" alt="coin"></img>
+                        {User.points} <img src="challenge-aerolab/statics/media/icons/coin.svg" alt="coin"></img>
                     </button>
                 </div>
             </header>
