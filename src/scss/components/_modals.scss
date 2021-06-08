@@ -21,9 +21,21 @@
     justify-content: center;
     align-items: center;
     font-size: 24px;
-
-    button{
+    p{
+        margin: 20px 0px 10px 0px;
+    }
+    .close-button{
         width: 200px
+    }
+
+    &.coin-modal{
+        gap: 30px;
+    }
+
+    .coin-button{
+        display: flex;
+        justify-content:center;
+        align-items: center;
     }
 }
 
