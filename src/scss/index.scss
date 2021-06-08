@@ -12,6 +12,9 @@ body {
   background-color: #f9f9f9f9;
   .content{
     padding: 60px 100px;
+    @media (max-width: $screen-md){
+      padding: 30px 50px;
+    }
   }
 }
 

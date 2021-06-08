@@ -4,7 +4,6 @@ import MessageModal from '../components/MessageModal';
 import CoinModal from '../components/CoinModal';
 import axios from 'axios'
 import React, { useState, useEffect } from "react";
-import { orderHighestPrice, orderLowestPrice } from '../utils'
 
 function App() {
   const [user, setUser] = useState({});
@@ -63,8 +62,12 @@ function App() {
     updateUserInfo();
   }
   
-  const closeModal = () => {
+  const closeMessageModal = () => {
     setMessage(null);
+  }
+
+  const closeCoinModal = () => {
+    setOpenCoinModal(false);
   }
 
 
@@ -72,10 +75,12 @@ function App() {
   return (
     <div className="App">
       <header className="header">
-        <img src="./assets/aerolab-logo.svg"></img>
+        <a href="https://aerolab.co/" target="_blank"><img src="./assets/aerolab-logo.svg"></img></a>
         <div className="user-info">
           <span>{user.name}</span>
-          <button className="default-button" onClick={() => setOpenCoinModal(true)}>{user.points} <img src="./assets/icons/coin.svg"></img></button>
+          <button className="default-button" onClick={() => setOpenCoinModal(true)}>
+            {user.points} <img src="./assets/icons/coin.svg"></img>
+          </button>
         </div>
       </header>
       <section className="divider">
@@ -84,8 +89,8 @@ function App() {
       <section className="content">
         <GridProducts Points={user.points} openModal={openModal}></GridProducts>
       </section>
-      {message ? <MessageModal Message={message} CloseModal={closeModal}></MessageModal> : null}
-      {openCoinModal ? <CoinModal ChargeCoins={chargeCoins} CloseModal={closeModal}></CoinModal> : null}
+      <MessageModal OpenedModal={message} Message={message} CloseModal={closeMessageModal}></MessageModal>
+      <CoinModal OpenedModal={openCoinModal} ChargeCoins={chargeCoins} CloseModal={closeCoinModal}></CoinModal>
     </div>
   );
 }

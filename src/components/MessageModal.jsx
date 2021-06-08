@@ -1,7 +1,7 @@
-const MessageModal = ({Message, CloseModal}) => {
+const MessageModal = ({Message, CloseModal, OpenedModal}) => {
     return (
         <>
-        <div className="modal">
+        <div className={`modal ${OpenedModal ? 'show' : 'hide'}`}>
             <div className="modal-content">
                 <p>{Message}</p>
                 <button class="default-button" onClick={CloseModal}>Close</button>

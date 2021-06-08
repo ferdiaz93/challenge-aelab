@@ -1,7 +1,7 @@
-const CoinModal = ({ChargeCoins,CloseModal}) => {
+const CoinModal = ({ChargeCoins,CloseModal, OpenedModal}) => {
     return (
         <>
-        <div className="modal">
+        <div className={`modal ${OpenedModal ? 'show' : 'hide'}`}>
             <div className="modal-content coin-modal">
                 <p>Select amount</p>
                 <button className="default-button coin-button" onClick={()  => ChargeCoins(1000)}>Charge 1000 <img src="./assets/icons/coin.svg" alt="" /></button>
