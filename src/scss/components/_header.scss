@@ -3,7 +3,10 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-
+    position: sticky;
+    top: -1px;
+    z-index: 10;
+    background-color: $background-white;
     .user-info{
         display: flex;
         align-items: center;
