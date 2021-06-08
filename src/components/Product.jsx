@@ -1,14 +1,13 @@
 import React, { useState } from "react";
 import { redeemProduct } from '../api'
+import coinIcon from '../assets/icons/coin.svg'
+import buyBlueIcon from '../assets/icons/buy-blue.svg'
+import buyWhiteIcon from '../assets/icons/buy-white.svg'
 
 
 const Product = ({ Item, UserPoints, openModal }) => {
-  const icon = {
-    white: './assets/icons/buy-white.svg',
-    blue: './assets/icons/buy-blue.svg',
-  }
   const [product, setProduct] = useState(Item);
-  const [buyIcon, setBuyIcon] = useState(icon.blue)
+  const [buyIcon, setBuyIcon] = useState(buyBlueIcon)
 
   const selectProduct = (productId) => {
     redeemProduct(productId)
@@ -28,13 +27,13 @@ const Product = ({ Item, UserPoints, openModal }) => {
     <div
       className="product-button"
       onMouseEnter={() => { setBuyIcon(null) }}
-      onMouseLeave={() => { setBuyIcon(icon.blue) }}
+      onMouseLeave={() => { setBuyIcon(buyBlueIcon) }}
     >
       <div className="initial-product-view">
         {UserPoints < product.cost ?
           <button className="grey-button float-need-button">
             You need {product.cost - UserPoints}
-            <img src="./assets/icons/coin.svg" alt="" />
+            <img src={coinIcon}alt="" />
           </button>
           :
           <img
@@ -53,11 +52,11 @@ const Product = ({ Item, UserPoints, openModal }) => {
       </div>
       {UserPoints > product.cost ?
         <div className="action-product">
-          <span>{product.cost} <img src="./assets/icons/coin.svg" alt="" /></span>
+          <span>{product.cost} <img src={coinIcon}alt="" /></span>
           <button className="default-button" onClick={() => { selectProduct(product._id) }}>Redeem now</button>
           <img
             className="float-buy-button-hover"
-            src={icon.white}
+            src={buyWhiteIcon}
             alt="buy-icon"
           />
         </div>
