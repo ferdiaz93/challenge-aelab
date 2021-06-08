@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { redeemProduct } from '../api'
 
 
@@ -44,7 +44,7 @@ const Product = ({ Item, UserPoints, openModal }) => {
           />
         }
         <div className="product-image">
-          <img src={product.img.url}></img>
+          <img src={product.img.url} alt=""></img>
         </div>
         <div className="product-description">
           <p className="section">{product.category}</p>

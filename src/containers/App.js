@@ -3,7 +3,6 @@ import GridProducts from '../components/GridProducts';
 import MessageModal from '../components/MessageModal';
 import CoinModal from '../components/CoinModal';
 import HeaderComponent from '../components/HeaderComponent';
-import axios from 'axios'
 import React, { useState, useEffect } from "react";
 import { getUser, chargePoints } from '../api'
 

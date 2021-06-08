@@ -79,7 +79,7 @@ const GridProducts = ({ Points, openModal }) => {
     <>
       <section className="grid-products-filters">
         <article className="quantity">
-          <span>{productsViewed()} of {activeFilter == 'More recent' ? historyProducts?.length : products?.length} products</span>
+          <span>{productsViewed()} of {activeFilter === 'More recent' ? historyProducts?.length : products?.length} products</span>
         </article>
         <span className="grid-divider"></span>
         <article className="sort-by">
