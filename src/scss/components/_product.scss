@@ -33,12 +33,20 @@
         }
         .float-buy-button{
             position: absolute;
-            top: -10px;
-            right: 5px;
+            top: 10px;
+            right: 10px;
             width:42px;
             height:42px;
-            display: none;
+            z-index: 1;
+            
+            &.hide{
+                display: none;
+            }
+            &.show{
+                display: block;
+            }
         }
+        
         .float-need-button{
             position: absolute;
             top: 10px;
@@ -56,11 +64,49 @@
     }
 
     .action-product{
-        display: none;
         position: absolute;
-        background-image:linear-gradient(-180deg, #0ad4fa 0%, #25bbf1 100%);
+        display: none;
+        opacity: 0;
+        background-color: rgba(10, 212, 250, 0);
         width:100%;
         height:276px;
         top: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        
+        &:hover{
+            align-items: center;
+            animation: ShowReedem 300ms 1 linear 0ms normal forwards;
+        }
+        span{
+            font-size: 36px;
+            color: $white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        button{
+            width: 80%;
+            margin-top: 10px;
+        }
+
+        .float-buy-button-hover{
+            position: absolute;
+            top: 10px;
+            right: 5px;
+        }
+    }
+}
+
+
+@keyframes ShowReedem {
+    0%{
+        background-color: rgba(10, 212, 250, 0);
+    }
+
+    100%{
+        opacity: 1;
+        background-color: rgba(10, 212, 250, 0.7);
     }
 }

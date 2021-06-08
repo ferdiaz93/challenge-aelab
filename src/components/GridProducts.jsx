@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import axios from 'axios'
 import { orderHighestPrice, orderLowestPrice } from '../utils'
 
-const GridProducts = () => {
+const GridProducts = ({Points}) => {
     const [products, setProducts] = useState(null);
 
     useEffect(() => {
@@ -51,7 +51,7 @@ const GridProducts = () => {
                 </article>
             </section>
             <section className="grid-products-container">
-                {products ? products.map((product) => <Product Item={product} key={product._id}></Product> ) : null}
+                {products ? products.map((product) => <Product Item={product} UserPoints={Points} key={product._id}></Product> ) : null}
             </section>
         </>
     )

@@ -32,7 +32,7 @@ function App() {
       }
     })
     .then(function (response) {
-      console.log(response.data, "TEST");
+      console.log(response.data, "history");
     })
     .catch(function (error) {
       // handle error
@@ -56,7 +56,7 @@ function App() {
         <h1 className="title">Electronics</h1>
       </section>
       <section className="content">
-        <GridProducts></GridProducts>
+        <GridProducts Points={user.points}></GridProducts>
       </section>
     </div>
   );
