@@ -2,7 +2,13 @@
 
 ## Installation
 
-Install the dependencies and devDependencies and start the server.
+Set the token environment into a `.env` file like the example file
+
+```
+REACT_APP_AEROLAB_TOKEN=
+```
+
+Install the dependencies and start the server.
 
 ```sh
 npm install
