@@ -5,6 +5,12 @@
     border: none;
     cursor: pointer;
     padding: 0px 20px;
+
+    &.active{
+        background-color: $light-blue;
+        color: $white;
+        transition: all 200ms;
+    }
 }
 
 .default-button:hover{

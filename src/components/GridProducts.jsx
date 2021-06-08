@@ -5,6 +5,7 @@ import { orderHighestPrice, orderLowestPrice } from '../utils'
 
 const GridProducts = ({Points}) => {
     const [products, setProducts] = useState(null);
+    const [activeFilter, setActiveFilter] = useState(null);
 
     useEffect(() => {
         axios.get('https://coding-challenge-api.aerolab.co/products', {
@@ -24,14 +25,21 @@ const GridProducts = ({Points}) => {
         });
     }, [])
 
+    const orderRecent = () => {
+        const orderedProducts = orderLowestPrice(products);
+        setActiveFilter('More recent')
+    }
+
     const orderLow = () => {
         const orderedProducts = orderLowestPrice(products);
         setProducts([...orderedProducts]);
+        setActiveFilter('Lower price')
     }
 
     const orderHigh = () => {
         const orderedProducts = orderHighestPrice(products);
         setProducts([...orderedProducts])
+        setActiveFilter('Higher price')
     }
 
     return (
@@ -44,9 +52,9 @@ const GridProducts = ({Points}) => {
                 <article className="sort-by">
                     <span>Sort by:</span>
                     <div className="filters">
-                        <button className="default-button">Most recent</button>
-                        <button className="default-button" onClick={() => orderLow()}>Lowest price</button>
-                        <button className="default-button" onClick={() => orderHigh()}>Highest price</button>
+                        <button className={`default-button ${activeFilter === 'More recent' ? 'active' : 'none' }`} onClick={() => orderRecent()}>Most recent</button>
+                        <button className={`default-button ${activeFilter === 'Lower price' ? 'active' : 'none' }`} onClick={() => orderLow()}>Lowest price</button>
+                        <button className={`default-button ${activeFilter === 'Higher price' ? 'active' : 'none' }`} onClick={() => orderHigh()}>Highest price</button>
                     </div>
                 </article>
             </section>

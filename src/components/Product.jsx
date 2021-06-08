@@ -37,7 +37,7 @@ const Product = ({Item, UserPoints}) =>{
             </div>
             {UserPoints > product.cost ? 
                 <div className="action-product">
-                    <span>12.000 <img src="./assets/icons/coin.svg" alt="" /></span>
+                    <span>{product.cost} <img src="./assets/icons/coin.svg" alt="" /></span>
                     <button className="default-button">Redeem now</button>
                     <img 
                         className="float-buy-button-hover" 
