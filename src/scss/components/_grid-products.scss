@@ -4,6 +4,8 @@
     font-size: 24px;
     padding-bottom: 24px;
     border-bottom: solid 1px $grey;
+    position: relative;
+
     .quantity{
         display: flex;
         align-items: center;
@@ -27,6 +29,24 @@
                 margin: 0px 15px;
             }
         }
+    }
+
+    .pages{
+        margin-left: 75px;
+        display: flex;
+        grid-gap: 15px;
+        gap: 15px;
+        position: absolute;
+        right: 10px;
+        .container{
+            width: 48px
+        }
+        img{
+            cursor:pointer;
+        }
+    }
+    &.footer{
+        margin-top: 60px;
     }
 }
 
