@@ -1,12 +1,37 @@
 import React, { useState, useEffect } from "react";
+import axios from 'axios'
 
-const Product = ({Item, UserPoints}) =>{
+const Product = ({Item, UserPoints, openModal}) =>{
     const icon = {
         white: './assets/icons/buy-white.svg',
         blue: './assets/icons/buy-blue.svg',
     }
     const [product, setProduct] = useState(Item);
     const [buyIcon, setBuyIcon] = useState(icon.blue)
+
+    const redeemProduct = (productId) => {
+        axios({
+            method: 'post',
+            url: 'https://coding-challenge-api.aerolab.co/redeem',
+            data: {
+                productId: productId,
+            },
+            headers: {
+                'Authorization': 'Bearer ' + process.env.REACT_APP_AEROLAB_TOKEN
+            }
+        })
+        .then(function (response) {
+            console.log(response);
+            openModal(response.data.message)
+        })
+        .catch(function (error) {
+            // handle error
+            console.log(error);
+        })
+        .then(function () {
+            // always executed
+        });
+    }
 
     return (
         <div
@@ -38,7 +63,7 @@ const Product = ({Item, UserPoints}) =>{
             {UserPoints > product.cost ? 
                 <div className="action-product">
                     <span>{product.cost} <img src="./assets/icons/coin.svg" alt="" /></span>
-                    <button className="default-button">Redeem now</button>
+                    <button className="default-button" onClick={() => { redeemProduct(product._id)}}>Redeem now</button>
                     <img 
                         className="float-buy-button-hover" 
                         src={icon.white} 
