@@ -1,0 +1,26 @@
+.header{
+    padding: 20px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: -1px;
+    z-index: 10;
+    background-color: $background-white;
+    .user-info{
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        font-size: 24px;
+        button{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 0px 20px;
+            img{
+                height: 30px;
+            }
+        }
+    }
+}

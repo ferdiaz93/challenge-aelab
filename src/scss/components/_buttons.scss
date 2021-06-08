@@ -1,0 +1,33 @@
+.default-button{
+    background-color: $white;
+    border-radius: 100px;
+    height: 48px;
+    border: none;
+    cursor: pointer;
+    padding: 0px 20px;
+
+    &.active{
+        background-color: $light-blue;
+        color: $white;
+        transition: all 200ms;
+    }
+}
+
+.default-button:hover{
+    background-color: $light-blue;
+    color: $white;
+    transition: all 200ms;
+}
+
+.grey-button{
+    opacity:0.8;
+    background:#616161;
+    border-radius:100px;
+    width:142px;
+    height:42px;
+    color: $white;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content:center;
+}
