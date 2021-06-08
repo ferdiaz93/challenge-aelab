@@ -8,7 +8,10 @@
     cursor: pointer;
     position: relative;
     &:hover{
-        
+        box-shadow: 26px 19px 75px -8px rgba(0,0,0,0.75);
+        -webkit-box-shadow: 26px 19px 75px -8px rgba(0,0,0,0.75);
+        -moz-box-shadow: 26px 19px 75px -8px rgba(0,0,0,0.75);
+        transition: box-shadow 100ms;
     }
     .initial-product-view{
         position: relative;
