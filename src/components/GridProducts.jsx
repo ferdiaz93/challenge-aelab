@@ -1,4 +1,7 @@
 import Product from './Product'
+import arrowLeftIcon from '../assets/icons/arrow-left.svg'
+import arrowRightIcon from '../assets/icons/arrow-right.svg'
+
 import React, { useState, useEffect } from "react";
 import { orderHighestPrice, orderLowestPrice, paginationProducts } from '../utils'
 import { getProducts, getHistory } from '../api'
@@ -93,12 +96,12 @@ const GridProducts = ({ Points, openModal }) => {
         <article className="pages">
           <div className="container">
             {currentPage !== 0 ?
-              <img onClick={() => { setCurrentPage(currentPage - 1) }} src="./assets/icons/arrow-left.svg" alt="" />
+              <img className="arrow-button" onClick={() => { setCurrentPage(currentPage - 1) }} src={arrowLeftIcon} alt="" />
               : null}
           </div>
           <div className="container">
             {currentPage !== parsedProducts.length - 1 ?
-              <img onClick={() => { setCurrentPage(currentPage + 1) }} src="./assets/icons/arrow-right.svg" alt="" />
+              <img className="arrow-button" onClick={() => { setCurrentPage(currentPage + 1) }} src={arrowRightIcon} alt="" />
               : null}
           </div>
         </article>
