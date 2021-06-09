@@ -5,7 +5,7 @@ const HeaderComponent = ({User, OpenModal}) => {
     return (
         <>
             <header className="header">
-                <a href="https://aerolab.co/" target="_blank"><img src={aerolabLogo} alt="aerolab-logo"></img></a>
+                <a href="https://aerolab.co/" target="_blank" rel="noreferrer"><img src={aerolabLogo} alt="aerolab-logo"></img></a>
                 <div className="user-info">
                     <span>{User.name}</span>
                     <button className="default-button" onClick={() => OpenModal()}>
