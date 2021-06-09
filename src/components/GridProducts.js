@@ -10,7 +10,7 @@ const GridProducts = ({ Points, openModal }) => {
   const [products, setProducts] = useState(null);
   const [activeFilter, setActiveFilter] = useState(null);
   const [currentPage, setCurrentPage] = useState(0);
-  const [parsedProducts, setParsedProducts] = useState([]);
+  const [pagesProducts, setPagesProducts] = useState([]);
   const [historyProducts, setHistoryProducts] = useState([]);
 
   useEffect(() => {
@@ -23,7 +23,7 @@ const GridProducts = ({ Points, openModal }) => {
       .then(function (response) {
         setProducts(response.data);
         let productsPages = paginationProducts(response.data);
-        setParsedProducts(productsPages);
+        setPagesProducts(productsPages);
       })
       .catch(function (error) {
         console.log(error);
@@ -61,14 +61,14 @@ const GridProducts = ({ Points, openModal }) => {
   const updateProductsPages = (productsOrdered) => {
     const productsPages = paginationProducts(productsOrdered);
     console.log(productsPages);
-    setParsedProducts(productsPages);
+    setPagesProducts(productsPages);
     setCurrentPage(0);
   }
 
   const productsViewed = () => {
     let count = 0;
     let page = currentPage;
-    parsedProducts.forEach((productsArray, index) => {
+    pagesProducts.forEach((productsArray, index) => {
       if(index <= page){
         count += productsArray.length;
       }
@@ -77,12 +77,12 @@ const GridProducts = ({ Points, openModal }) => {
   }
 
   const prevPage = () => {
-    console.log(parsedProducts[currentPage - 1])
+    console.log(pagesProducts[currentPage - 1])
     setCurrentPage(currentPage - 1)
   }
   
   const nextPage = () => {
-    console.log(parsedProducts[currentPage + 1])
+    console.log(pagesProducts[currentPage + 1])
     setCurrentPage(currentPage + 1)
   }
 
@@ -108,18 +108,18 @@ const GridProducts = ({ Points, openModal }) => {
               : null}
           </div>
           <div className="container">
-            {currentPage !== parsedProducts.length - 1 ?
+            {currentPage !== pagesProducts.length - 1 ?
               <img className="arrow-button" onClick={() => { nextPage() }} src={arrowRightIcon} alt="" />
               : null}
           </div>
         </article>
       </section>
       <section className="grid-products-container">
-        {parsedProducts.length > 0 ?
-          parsedProducts[currentPage].map((product, index) => <Product 
+        {pagesProducts?.length > 0 ?
+          pagesProducts[currentPage].map((product, index) => <Product 
             Item={product} 
             UserPoints={Points} 
-            key={product._id + index} 
+            key={product._id + index } 
             openModal={openModal}
             updateHistoryProducts={() => updateHistory()}></Product>)
           : null}
