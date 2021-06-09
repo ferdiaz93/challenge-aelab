@@ -5,22 +5,19 @@ import buyBlueIcon from '../assets/icons/buy-blue.svg'
 import buyWhiteIcon from '../assets/icons/buy-white.svg'
 
 
-const Product = ({ Item, UserPoints, openModal }) => {
+const Product = ({ Item, UserPoints, openModal, updateHistoryProducts }) => {
   const [product, setProduct] = useState(Item);
   const [buyIcon, setBuyIcon] = useState(buyBlueIcon)
 
   const selectProduct = (productId) => {
     redeemProduct(productId)
       .then(function (response) {
-        openModal(response.data.message)
+        openModal(response.data.message);
+        updateHistoryProducts();
       })
       .catch(function (error) {
-        // handle error
         console.log(error);
       })
-      .then(function () {
-        // always executed
-      });
   }
 
   return (
@@ -43,7 +40,7 @@ const Product = ({ Item, UserPoints, openModal }) => {
           />
         }
         <div className="product-image">
-          <img src={product.img.url} alt=""></img>
+          <img src={product?.img?.url} alt=""></img>
         </div>
         <div className="product-description">
           <p className="section">{product.category}</p>

@@ -41,28 +41,26 @@ const GridProducts = ({ Points, openModal }) => {
   }
 
   const orderRecent = () => {
-    let productsPages = paginationProducts(historyProducts);
-    setParsedProducts(productsPages);
+    const orderedProducts = historyProducts.reverse();
+    updateProductsPages([...orderedProducts]);
     setActiveFilter('More recent');
-    setCurrentPage(0);
   }
 
   const orderLow = () => {
     const orderedProducts = orderLowestPrice(products);
-    setProducts([...orderedProducts]);
     updateProductsPages([...orderedProducts]);
     setActiveFilter('Lower price');
   }
 
   const orderHigh = () => {
     const orderedProducts = orderHighestPrice(products);
-    setProducts([...orderedProducts]);
     updateProductsPages([...orderedProducts]);
     setActiveFilter('Higher price')
   }
 
   const updateProductsPages = (productsOrdered) => {
-    let productsPages = paginationProducts(productsOrdered);
+    const productsPages = paginationProducts(productsOrdered);
+    console.log(productsPages);
     setParsedProducts(productsPages);
     setCurrentPage(0);
   }
@@ -70,12 +68,22 @@ const GridProducts = ({ Points, openModal }) => {
   const productsViewed = () => {
     let count = 0;
     let page = currentPage;
-    parsedProducts.forEach((products, index) => {
+    parsedProducts.forEach((productsArray, index) => {
       if(index <= page){
-        count += products.length;
+        count += productsArray.length;
       }
     })
     return count;
+  }
+
+  const prevPage = () => {
+    console.log(parsedProducts[currentPage - 1])
+    setCurrentPage(currentPage - 1)
+  }
+  
+  const nextPage = () => {
+    console.log(parsedProducts[currentPage + 1])
+    setCurrentPage(currentPage + 1)
   }
 
   return (
@@ -96,19 +104,24 @@ const GridProducts = ({ Points, openModal }) => {
         <article className="pages">
           <div className="container">
             {currentPage !== 0 ?
-              <img className="arrow-button" onClick={() => { setCurrentPage(currentPage - 1) }} src={arrowLeftIcon} alt="" />
+              <img className="arrow-button" onClick={() => { prevPage() }} src={arrowLeftIcon} alt="" />
               : null}
           </div>
           <div className="container">
             {currentPage !== parsedProducts.length - 1 ?
-              <img className="arrow-button" onClick={() => { setCurrentPage(currentPage + 1) }} src={arrowRightIcon} alt="" />
+              <img className="arrow-button" onClick={() => { nextPage() }} src={arrowRightIcon} alt="" />
               : null}
           </div>
         </article>
       </section>
       <section className="grid-products-container">
         {parsedProducts.length > 0 ?
-          parsedProducts[currentPage].map((product, index) => <Product Item={product} UserPoints={Points} key={product._id + index} openModal={openModal}></Product>)
+          parsedProducts[currentPage].map((product, index) => <Product 
+            Item={product} 
+            UserPoints={Points} 
+            key={product._id + index} 
+            openModal={openModal}
+            updateHistoryProducts={() => updateHistory()}></Product>)
           : null}
       </section>
       <section className="grid-products-filters footer">
