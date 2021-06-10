@@ -33,7 +33,12 @@ const GridProducts = ({ Points, openModal }) => {
   const updateHistory = () => {
     getHistory()
       .then(function (response) {
-        setHistoryProducts(response.data);
+        let productsPages = response.data;
+        setHistoryProducts(productsPages);
+        if(activeFilter === 'Most recent'){
+          const orderedProducts = productsPages.reverse();
+          updateProductsPages(orderedProducts);
+        }
       })
       .catch(function (error) {
         console.log(error);
@@ -43,7 +48,7 @@ const GridProducts = ({ Points, openModal }) => {
   const orderRecent = () => {
     const orderedProducts = historyProducts.reverse();
     updateProductsPages([...orderedProducts]);
-    setActiveFilter('More recent');
+    setActiveFilter('Most recent');
   }
 
   const orderLow = () => {
@@ -60,7 +65,6 @@ const GridProducts = ({ Points, openModal }) => {
 
   const updateProductsPages = (productsOrdered) => {
     const productsPages = paginationProducts(productsOrdered);
-    console.log(productsPages);
     setPagesProducts(productsPages);
     setCurrentPage(0);
   }
@@ -77,12 +81,10 @@ const GridProducts = ({ Points, openModal }) => {
   }
 
   const prevPage = () => {
-    console.log(pagesProducts[currentPage - 1])
     setCurrentPage(currentPage - 1)
   }
   
   const nextPage = () => {
-    console.log(pagesProducts[currentPage + 1])
     setCurrentPage(currentPage + 1)
   }
 
@@ -90,13 +92,13 @@ const GridProducts = ({ Points, openModal }) => {
     <>
       <section className="grid-products-filters">
         <article className="quantity">
-          <span>{productsViewed()} of {activeFilter === 'More recent' ? historyProducts?.length : products?.length} products</span>
+          <span>{productsViewed()} of {activeFilter === 'Most recent' ? historyProducts?.length : products?.length} products</span>
         </article>
         <span className="grid-divider"></span>
         <article className="sort-by">
           <span>Sort by:</span>
           <div className="filters">
-            <button className={`default-button ${activeFilter === 'More recent' ? 'active' : 'none'}`} onClick={() => orderRecent()}>Most recent</button>
+            <button className={`default-button ${activeFilter === 'Most recent' ? 'active' : 'none'}`} onClick={() => orderRecent()}>Most recent</button>
             <button className={`default-button ${activeFilter === 'Lower price' ? 'active' : 'none'}`} onClick={() => orderLow()}>Lowest price</button>
             <button className={`default-button ${activeFilter === 'Higher price' ? 'active' : 'none'}`} onClick={() => orderHigh()}>Highest price</button>
           </div>
@@ -117,9 +119,10 @@ const GridProducts = ({ Points, openModal }) => {
       <section className="grid-products-container">
         {pagesProducts?.length > 0 ?
           pagesProducts[currentPage].map((product, index) => <Product 
-            Item={product} 
-            UserPoints={Points} 
-            key={product._id + index } 
+            Product={product} 
+            UserPoints={Points}
+            ActiveFilter={activeFilter}
+            key={activeFilter === 'Most recent' ? product.productId + index : product._id + index } 
             openModal={openModal}
             updateHistoryProducts={() => updateHistory()}></Product>)
           : null}

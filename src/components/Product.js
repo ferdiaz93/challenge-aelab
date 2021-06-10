@@ -5,8 +5,7 @@ import buyBlueIcon from '../assets/icons/buy-blue.svg'
 import buyWhiteIcon from '../assets/icons/buy-white.svg'
 
 
-const Product = ({ Item, UserPoints, openModal, updateHistoryProducts }) => {
-  const [product, setProduct] = useState(Item);
+const Product = ({ Product, UserPoints, openModal, ActiveFilter, updateHistoryProducts }) => {
   const [buyIcon, setBuyIcon] = useState(buyBlueIcon)
 
   const selectProduct = (productId) => {
@@ -27,9 +26,9 @@ const Product = ({ Item, UserPoints, openModal, updateHistoryProducts }) => {
       onMouseLeave={() => { setBuyIcon(buyBlueIcon) }}
     >
       <div className="initial-product-view">
-        {UserPoints < product.cost ?
+        {UserPoints < Product.cost ?
           <button className="grey-button float-need-button">
-            You need {product.cost - UserPoints}
+            You need {Product.cost - UserPoints}
             <img src={coinIcon}alt="" />
           </button>
           :
@@ -40,17 +39,17 @@ const Product = ({ Item, UserPoints, openModal, updateHistoryProducts }) => {
           />
         }
         <div className="product-image">
-          <img src={product?.img?.url} alt=""></img>
+          <img src={Product.img?.url} alt=""></img>
         </div>
         <div className="product-description">
-          <p className="section">{product.category}</p>
-          <span className="name">{product.name}</span>
+          <p className="section">{Product.category}</p>
+          <span className="name">{Product.name}</span>
         </div>
       </div>
-      {UserPoints > product.cost ?
+      {UserPoints > Product.cost ?
         <div className="action-product">
-          <span>{product.cost} <img src={coinIcon}alt="" /></span>
-          <button className="default-button" onClick={() => { selectProduct(product._id) }}>Redeem now</button>
+          <span>{Product.cost} <img src={coinIcon} alt="" /></span>
+          <button className="default-button" onClick={() => { selectProduct( ActiveFilter === 'Most recent' ? Product.productId : Product._id) }}>Redeem now</button>
           <img
             className="float-buy-button-hover"
             src={buyWhiteIcon}
