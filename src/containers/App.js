@@ -28,7 +28,8 @@ function App() {
   const chargeCoins = (amount) => {
     chargePoints(amount)
       .then(function (response) {
-          updateUserInfo();
+          user.points = response.data['New Points'];
+          setUser({...user})
           setOpenCoinModal(false)
       })
       .catch(function (error) {
